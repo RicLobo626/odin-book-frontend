@@ -9,6 +9,7 @@ export default {
     extend: {
       colors: {
         primary: "#3b82f6",
+        error: "#ef4444",
         current: "currentColor",
       },
       borderRadius: {
