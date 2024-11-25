@@ -26,9 +26,20 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+      "@typescript-eslint/no-misused-promises": [
+        2,
+        {
+          checksVoidReturn: {
+            attributes: false,
+          },
+        },
+      ],
     },
-  }
+  },
 );
