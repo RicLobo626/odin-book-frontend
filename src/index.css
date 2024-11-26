@@ -16,4 +16,8 @@
   body {
     @apply h-full;
   }
+
+  svg {
+    @apply text-primary;
+  }
 }
