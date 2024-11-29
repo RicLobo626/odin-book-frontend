@@ -1,8 +1,11 @@
 import { RootLayout } from "@/components/layouts/RootLayout";
 import { NotFoundPage } from "@/components/pages";
-import { createRootRoute } from "@tanstack/react-router";
+import { QueryClient } from "@tanstack/react-query";
+import { createRootRouteWithContext } from "@tanstack/react-router";
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   component: RootLayout,
   notFoundComponent: NotFoundPage,
 });

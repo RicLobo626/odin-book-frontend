@@ -2,12 +2,26 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "@/routeTree.gen";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@/index.css";
 
-// Create a new router instance
-const router = createRouter({ routeTree }); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 120,
+    },
+  },
+});
 
-// Register the router instance for type safety
+const router = createRouter({
+  routeTree, // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+  context: { queryClient },
+  defaultPreload: "intent",
+  defaultPreloadStaleTime: 0,
+});
+
 declare module "@tanstack/react-router" {
   interface Register {
     router: typeof router;
@@ -21,7 +35,9 @@ if (!rootElement.innerHTML) {
 
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </StrictMode>,
   );
 }
