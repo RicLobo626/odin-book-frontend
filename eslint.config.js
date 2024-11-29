@@ -41,6 +41,7 @@ export default tseslint.config(
         },
       ],
       "@typescript-eslint/no-confusing-void-expression": "off",
+      "react/prop-types": "off",
     },
   },
 );
