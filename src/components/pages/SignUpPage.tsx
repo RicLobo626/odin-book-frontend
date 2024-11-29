@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { isApiError, setApiErrors } from "@/utils";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { useForm } from "react-hook-form";
 import { Head } from "@/components/meta/Head";
 import { zodResolver } from "@hookform/resolvers/zod";

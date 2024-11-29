@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Link } from "@tanstack/react-router";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import {
   Card,
   Button,
