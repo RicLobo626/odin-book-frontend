@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { Link } from "@tanstack/react-router";
-import { cn } from "@/utils/cn";
 import {
   Card,
   Button,
@@ -15,7 +14,6 @@ import {
   CardContent,
   CardFooter,
   Separator,
-  buttonVariants,
 } from "@/components/ui";
 import { Head } from "@/components/meta/Head";
 
@@ -69,13 +67,12 @@ export const LoginPage = () => {
           <Button type="submit" size="lg" className="w-full">
             Log In
           </Button>
+
           <Separator />
-          <Link
-            to="/signup"
-            className={cn("w-full", buttonVariants({ variant: "outline" }))}
-          >
-            Create a new account
-          </Link>
+
+          <Button className="w-full" variant="outline" asChild>
+            <Link to="/signup">Create a new account</Link>
+          </Button>
         </CardFooter>
       </Card>
     </>

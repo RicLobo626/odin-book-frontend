@@ -1,4 +1,4 @@
-import { buttonVariants } from "@/components/ui";
+import { Button } from "@/components/ui";
 import { Link } from "@tanstack/react-router";
 import { Frown } from "lucide-react";
 
@@ -15,13 +15,9 @@ export const NotFoundPage = () => {
         The page you are looking for cannot be found
       </p>
 
-      <Link
-        to="/"
-        aria-label="Go to the homepage"
-        className={buttonVariants({ variant: "outline" })}
-      >
-        Back to home
-      </Link>
+      <Button variant="outline" aria-label="Go to the homepage" asChild>
+        <Link to="/"> Back to home</Link>
+      </Button>
     </main>
   );
 };

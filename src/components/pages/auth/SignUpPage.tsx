@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { isApiError, setApiErrors } from "@/utils";
-import { cn } from "@/utils/cn";
 import { useForm } from "react-hook-form";
 import { Head } from "@/components/meta/Head";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +23,6 @@ import {
   CardContent,
   CardFooter,
   Separator,
-  buttonVariants,
   CardDescription,
   FormMessage,
 } from "@/components/ui";
@@ -165,12 +163,9 @@ export const SignUpPage = () => {
 
           <Separator />
 
-          <Link
-            to="/login"
-            className={cn("w-full", buttonVariants({ variant: "outline" }))}
-          >
-            Already have an account? Log In
-          </Link>
+          <Button asChild className="w-full" variant="outline">
+            <Link to="/login">Already have an account? Log In</Link>
+          </Button>
         </CardFooter>
       </Card>
     </>
