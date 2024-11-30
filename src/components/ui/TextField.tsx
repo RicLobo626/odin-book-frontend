@@ -30,10 +30,10 @@ export const TextField = <TFieldValues extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem {...props} className={cn(className)}>
+        <FormItem className={cn(className)}>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input placeholder={placeholder || label} {...field} />
+            <Input placeholder={placeholder || label} {...props} {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>
