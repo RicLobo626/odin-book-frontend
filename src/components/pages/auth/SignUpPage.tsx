@@ -8,7 +8,6 @@ import { newUserSchema } from "@/schemas";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "@/services/authService";
 import { useToast } from "@/hooks";
-import { LoaderCircle } from "lucide-react";
 import {
   Card,
   Button,
@@ -20,6 +19,7 @@ import {
   Separator,
   CardDescription,
   TextField,
+  LoadingSpinner,
 } from "@/components/ui";
 
 export const SignUpPage = () => {
@@ -112,13 +112,7 @@ export const SignUpPage = () => {
 
         <CardFooter className="flex-col gap-3">
           <Button type="submit" form="signup" className="w-full" size="lg">
-            {isPending && (
-              <LoaderCircle
-                className="h-full animate-spin text-white"
-                height="80"
-                size="500"
-              />
-            )}
+            <LoadingSpinner isLoading={isPending} />
             Sign Up
           </Button>
 
