@@ -13,18 +13,13 @@ import {
   Card,
   Button,
   Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  Input,
   CardHeader,
   CardTitle,
   CardContent,
   CardFooter,
   Separator,
   CardDescription,
-  FormMessage,
+  TextField,
 } from "@/components/ui";
 
 export const SignUpPage = () => {
@@ -89,61 +84,27 @@ export const SignUpPage = () => {
           <Form {...form}>
             <form onSubmit={handleSubmit} id="signup" className="space-y-4">
               <div className="flex flex-col gap-3 md:flex-row">
-                <FormField
+                <TextField
                   control={form.control}
+                  label="First name"
                   name="firstName"
-                  render={({ field }) => (
-                    <FormItem className="flex-1">
-                      <FormLabel>First name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="First name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  className="flex-1"
                 />
 
-                <FormField
+                <TextField
                   control={form.control}
+                  label="Last name"
                   name="lastName"
-                  render={({ field }) => (
-                    <FormItem className="flex-1">
-                      <FormLabel>Last name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Last name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  className="flex-1"
                 />
               </div>
 
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Email" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <TextField control={form.control} label="Email" name="email" />
 
-              <FormField
+              <TextField
                 control={form.control}
+                label="Password"
                 name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Password" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
               />
             </form>
           </Form>

@@ -1,6 +1,7 @@
 export * from "./Button";
 export * from "./Card";
 export * from "./Form";
-export { Label } from "./Label";
-export { Input } from "./Input";
-export { Separator } from "./Separator";
+export * from "./Label";
+export * from "./Input";
+export * from "./Separator";
+export * from "./TextField";
