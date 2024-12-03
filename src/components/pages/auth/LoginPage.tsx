@@ -1,6 +1,13 @@
 import { useForm } from "react-hook-form";
-import { Link } from "@tanstack/react-router";
 import { Head } from "@/components/meta/Head";
+import { UserLogin } from "@/types";
+import { userLoginSchema } from "@/schemas";
+import { useToast, useAuth } from "@/hooks";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { isApiError, setApiErrors } from "@/utils";
+import { loginUser } from "@/services";
+import { useMutation } from "@tanstack/react-query";
 import {
   Card,
   Button,
@@ -11,10 +18,52 @@ import {
   CardFooter,
   Separator,
   TextField,
+  LoadingSpinner,
 } from "@/components/ui";
 
 export const LoginPage = () => {
-  const form = useForm();
+  const { login } = useAuth();
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  const form = useForm<UserLogin>({
+    resolver: zodResolver(userLoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: loginUser,
+    onSuccess(data) {
+      login(data);
+
+      toast({
+        title: "Login successful!",
+        description: "You are now logged in.",
+      });
+
+      return navigate({
+        to: "/",
+        replace: true,
+      });
+    },
+
+    onError(error) {
+      if (isApiError(error)) {
+        setApiErrors(error, form.setError);
+      } else {
+        toast({
+          title: "Could not login",
+          description: "Something went wrong. Please try again later.",
+          variant: "destructive",
+        });
+      }
+    },
+  });
+
+  const handleSubmit = form.handleSubmit((values) => mutate(values));
 
   return (
     <>
@@ -32,20 +81,22 @@ export const LoginPage = () => {
 
         <CardContent>
           <Form {...form}>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" id="login">
               <TextField control={form.control} label="Email" name="email" />
 
               <TextField
                 control={form.control}
                 label="Password"
                 name="password"
+                type="password"
               />
             </form>
           </Form>
         </CardContent>
 
         <CardFooter className="flex-col gap-3">
-          <Button type="submit" size="lg" className="w-full">
+          <Button form="login" type="submit" size="lg" className="w-full">
+            <LoadingSpinner isLoading={isPending} />
             Log In
           </Button>
 

@@ -1,3 +1,4 @@
-export { LoginPage } from "./auth/LoginPage";
-export { SignUpPage } from "./auth/SignUpPage";
-export { NotFoundPage } from "./NotFoundPage";
+export * from "./auth/LoginPage";
+export * from "./auth/SignUpPage";
+export * from "./NotFoundPage";
+export * from "./app/HomePage";

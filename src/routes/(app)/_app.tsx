@@ -1,19 +1,19 @@
-import { AuthLayout } from "@/components/layouts";
+import { AppLayout } from "@/components/layouts";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/(auth)/_auth")({
-  component: AuthLayout,
-  beforeLoad: ({ context }) => {
+export const Route = createFileRoute("/(app)/_app")({
+  component: AppLayout,
+
+  beforeLoad: ({ location, context }) => {
     const { isAuthenticated } = context.auth;
 
-    if (isAuthenticated) {
+    if (!isAuthenticated) {
       // eslint-disable-next-line
       throw redirect({
-        to: "/",
+        to: "/login",
         search: {
           redirect: location.href,
         },
-        replace: true,
       });
     }
   },

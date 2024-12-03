@@ -3,7 +3,7 @@ import { z } from "zod";
 export const userSchema = z.object({
   id: z.number(),
   fullName: z.string().min(1),
-  createdAt: z.date(),
+  createdAt: z.string().datetime(),
   email: z.string().min(1, "Email is required").email("This email isn't valid"),
 });
 
@@ -29,6 +29,11 @@ export const newUserSchema = userSchema
         `Password cannot exceed ${passwordMax.toString()} characters`,
       ),
   });
+
+export const userLoginSchema = newUserSchema.pick({
+  email: true,
+  password: true,
+});
 
 export const publicUserSchema = userSchema.omit({
   email: true,

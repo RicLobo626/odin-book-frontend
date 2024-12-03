@@ -1,7 +1,14 @@
-import { Outlet } from "@tanstack/react-router";
+import { useAuth } from "@/hooks";
+import { Navigate, Outlet } from "@tanstack/react-router";
 import { Earth } from "lucide-react";
 
 export const AuthLayout = () => {
+  const { isAuthenticated } = useAuth();
+
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+
   return (
     <div className="flex h-full flex-col gap-5 py-5 md:flex-row md:px-5">
       <header className="my-auto text-center md:flex-1">
