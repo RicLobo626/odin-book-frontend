@@ -51,7 +51,7 @@ export const SignUpPage = () => {
     } else {
       toast({
         title: "Could not create account",
-        description: error.message,
+        description: "Something went wrong. Please try again later.",
         variant: "destructive",
       });
     }
