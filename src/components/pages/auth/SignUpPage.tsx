@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { NewUser } from "@/types";
 import { newUserSchema } from "@/schemas";
 import { useMutation } from "@tanstack/react-query";
-import { registerUser } from "@/services/authService";
+import { registerUser } from "@/services";
 import { useToast } from "@/hooks";
 import {
   Card,
@@ -103,6 +103,7 @@ export const SignUpPage = () => {
 
               <TextField
                 control={form.control}
+                type="password"
                 label="Password"
                 name="password"
               />
